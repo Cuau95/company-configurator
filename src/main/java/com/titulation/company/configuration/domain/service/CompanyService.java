@@ -20,4 +20,8 @@ public class CompanyService {
         return companyRepository.findByIdEmpresa(idEmpresa);
     }
     
+    public Company saveCompany(Company company) {
+        return companyRepository.save(company);
+    }
+    
 }
