@@ -1,2 +1,5 @@
+com\titulation\company\configuration\domain\repository\CompanyRepository.class
 com\titulation\company\configuration\Application.class
 com\titulation\company\configuration\domain\model\Company.class
+com\titulation\company\configuration\domain\service\CompanyService.class
+com\titulation\company\configuration\infratructure\controller\CompanyContoller.class
