@@ -2,7 +2,6 @@ package com.titulation.company.configuration.domain.service;
 
 import com.titulation.company.configuration.domain.model.Company;
 import com.titulation.company.configuration.domain.repository.CompanyRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class CompanyService {
         this.companyRepository = conmpanyRepository;
     }
     
-    public List<Company> getCompanies(String idEmpresa) {
+    public Company getCompanies(String idEmpresa) {
         return companyRepository.findByIdEmpresa(idEmpresa);
     }
     

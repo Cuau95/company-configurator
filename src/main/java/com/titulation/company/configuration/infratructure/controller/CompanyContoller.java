@@ -5,7 +5,6 @@ import static org.springframework.http.HttpStatus.OK;
 
 import com.titulation.company.configuration.domain.model.Company;
 import com.titulation.company.configuration.domain.service.CompanyService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class CompanyContoller {
     }
 
     @GetMapping("/id/{idEmpresa}")
-    public ResponseEntity<List<Company>> getComanies(@PathVariable("idEmpresa") String idEmpresa) {
+    public ResponseEntity<Company> getComanies(@PathVariable("idEmpresa") String idEmpresa) {
         return new ResponseEntity<>(companyService.getCompanies(idEmpresa), FOUND);
     }
 
