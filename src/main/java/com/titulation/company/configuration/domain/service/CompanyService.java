@@ -15,12 +15,31 @@ public class CompanyService {
         this.companyRepository = conmpanyRepository;
     }
     
-    public Company getCompanies(String idEmpresa) {
-        return companyRepository.findByIdEmpresa(idEmpresa);
+    public Company getCompany(String idEmpresa) {
+        try{
+            return companyRepository.findByIdEmpresa(idEmpresa);
+        }catch(Exception ex){
+            return null;
+        }
     }
     
     public Company saveCompany(Company company) {
-        return companyRepository.save(company);
+        try{
+            return companyRepository.save(company);
+        }catch(Exception ex) {
+            return null;
+        }
+    }
+    
+    public String checkPassword(String idCompany, String password){
+        try{
+            if(getCompany(idCompany).getPassword().equals(password)){
+                return "pass";
+            }
+            return "not_pass";
+        }catch(Exception ex) {
+            return "not_found";
+        }
     }
     
 }

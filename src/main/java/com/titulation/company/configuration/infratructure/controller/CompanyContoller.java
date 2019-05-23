@@ -1,11 +1,13 @@
 package com.titulation.company.configuration.infratructure.controller;
 
 import static org.springframework.http.HttpStatus.FOUND;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.titulation.company.configuration.domain.model.Company;
 import com.titulation.company.configuration.domain.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +29,24 @@ public class CompanyContoller {
 
     @GetMapping("/id/{idEmpresa}")
     public ResponseEntity<Company> getComanies(@PathVariable("idEmpresa") String idEmpresa) {
-        return new ResponseEntity<>(companyService.getCompanies(idEmpresa), FOUND);
+        return new ResponseEntity<>(companyService.getCompany(idEmpresa), FOUND);
     }
 
     @PostMapping("/id/{idEmpresa}")
     public ResponseEntity<Company> postComanies(@RequestBody Company company, @PathVariable("idEmpresa") String idEmpresa) {
         company.setIdEmpresa(idEmpresa);
         return new ResponseEntity<>(companyService.saveCompany(company), OK);
+    }
+    
+    @GetMapping("/id/{idEmpresa}/password/{password}")
+    public ResponseEntity<String> checkPassword(@PathVariable("idEmpresa") String idEmpresa, 
+            @PathVariable("password") String password) {
+        String passwordCheck = companyService.checkPassword(idEmpresa, password);
+        HttpStatus status = NOT_FOUND;
+        if(passwordCheck.equals("pass")){
+            status = OK;
+        }
+        return new ResponseEntity<>(passwordCheck, status);
     }
 
 }
