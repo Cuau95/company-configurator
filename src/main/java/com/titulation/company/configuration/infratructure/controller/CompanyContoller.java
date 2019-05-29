@@ -29,11 +29,13 @@ public class CompanyContoller {
         this.companyService = companyService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/id/{idEmpresa}")
     public ResponseEntity<Company> getComanies(@PathVariable("idEmpresa") String idEmpresa) {
-        return new ResponseEntity<>(companyService.getCompany(idEmpresa), FOUND);
+        return new ResponseEntity<>(companyService.getCompany(idEmpresa), OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/id/{idEmpresa}")
     public ResponseEntity<Company> postComanies(@RequestBody Company company, @PathVariable("idEmpresa") String idEmpresa) {
         company.setIdEmpresa(idEmpresa);
